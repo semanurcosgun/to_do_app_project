@@ -18,9 +18,10 @@ class _TaskItemState extends State<TaskItem> {
   late LocalStorage _localStorage;
   @override
   void initState() {
-    // TODO: implement initState
+    
     super.initState();
     _localStorage=locator<LocalStorage>();
+    // ignore: avoid_print
     print('init state tetiklendi');
 
   }
