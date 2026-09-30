@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Constans{
+class Constants{
  static  TextStyle getTitleTextStyle(){
     return TextStyle(
       color:Colors.white,
@@ -19,4 +19,11 @@ class Constans{
     return  TextStyle(fontSize: 14, color: Colors.grey,fontFamily: "PinyonScript");
 
   }
+  static TextStyle taskTextStyle() {
+  return TextStyle(
+    fontSize: 16,
+    color: Colors.black,
+    fontFamily: "PinyonScript",
+  );
+}
 }

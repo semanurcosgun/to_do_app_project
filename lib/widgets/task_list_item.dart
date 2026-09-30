@@ -18,14 +18,11 @@ class _TaskItemState extends State<TaskItem> {
   late LocalStorage _localStorage;
   @override
   void initState() {
-    
     super.initState();
     _localStorage=locator<LocalStorage>();
-    // ignore: avoid_print
     print('init state tetiklendi');
 
   }
-
   @override
   Widget build(BuildContext context) {
     taskNameController.text = widget.task.name;
@@ -59,9 +56,10 @@ class _TaskItemState extends State<TaskItem> {
         title: widget.task.isCompleted
             ? Text(
                 widget.task.name,
-                style:Constans.completedTaskTextStyle() ,
+                style:Constants.completedTaskTextStyle() ,
               )
             : TextField(
+                style: Constants.taskTextStyle(),
                 controller: taskNameController,
                 minLines: 1,
                 maxLines: null,
@@ -75,7 +73,7 @@ class _TaskItemState extends State<TaskItem> {
               ),
         trailing: Text(
           DateFormat("hh:mm a").format(widget.task.createdAt),
-          style:Constans.taskTimeTextStyle(),
+          style:Constants.taskTimeTextStyle(),
         ),
       ),
     );

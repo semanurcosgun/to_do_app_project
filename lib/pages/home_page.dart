@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: allTasks.isNotEmpty ? ListView.builder(
         itemBuilder:(context, index){
-          var oankiListeElemani=allTasks[index];
+          var listElement=allTasks[index];
           return Dismissible(
             background:Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -52,18 +52,18 @@ class _HomePageState extends State<HomePage> {
               Icon(Icons.delete,color: Colors.grey,),
               Text('remove_task').tr()
             ],),
-            key: Key(oankiListeElemani.id),
+            key: Key(listElement.id),
             onDismissed: (direction)async{
               allTasks.removeAt(index);
-              await _localStorage.deleteTask(task:oankiListeElemani);
+              await _localStorage.deleteTask(task:listElement);
               setState(() {
               });
             },
-            child: TaskItem(task: oankiListeElemani)
+            child: TaskItem(task: listElement)
           );
         },
         itemCount: allTasks.length,
-       ):Center(child: Text('Görev Ekle'),),
+       ):Center(child: Text('add_task').tr(),),
     );
   }
   void _showAddTaskBottomSheet() {
@@ -74,9 +74,9 @@ class _HomePageState extends State<HomePage> {
         child: ListTile(
           autofocus: true ,
           title: TextField(
-            style: Constans.getTitleTextStyle(),
+            style: Constants.getTitleTextStyle(),
             decoration: InputDecoration(
-              hintText:  'Görev Nedir',
+              hintText:  'add_task'.tr(),
               border: InputBorder.none
             ),
             onSubmitted: (value) async {

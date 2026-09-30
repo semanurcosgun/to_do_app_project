@@ -16,7 +16,7 @@ class CustomSearchDelegate extends SearchDelegate {
       }, icon: Icon(Icons.clear))
     ];
   }
-
+  
   @override
   Widget? buildLeading(BuildContext context) {
     return GestureDetector(onTap: (){
@@ -28,11 +28,10 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-     
-    var filteredList =allTasks.where((gorev)=>gorev.name.toLowerCase().contains(query.toLowerCase())).toList();
+    var filteredList =allTasks.where((task)=>task.name.toLowerCase().contains(query.toLowerCase())).toList();
     return filteredList.length >0 ?ListView.builder(
         itemBuilder:(context, index){
-          var oankiListeElemani=filteredList[index];
+          var ListElement=filteredList[index];
           return Dismissible(
             background:Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -40,16 +39,16 @@ class CustomSearchDelegate extends SearchDelegate {
               Icon(Icons.delete,color: Colors.grey,),
               Text('remove_task').tr()
             ],),
-            key: Key(oankiListeElemani.id),
+            key: Key(ListElement.id),
             onDismissed: (direction) async{
               allTasks.removeAt(index);
-             await locator<LocalStorage>().deleteTask(task:oankiListeElemani);
+             await locator<LocalStorage>().deleteTask(task:ListElement);
               
             },
-            child: TaskItem(task: oankiListeElemani)
+            child: TaskItem(task: ListElement)
           );
         },
-        itemCount: allTasks.length,
+        itemCount:filteredList.length,
        ):Center(child: Text('search_not_found').tr(),);
   }
 

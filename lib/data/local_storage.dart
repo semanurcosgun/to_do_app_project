@@ -1,11 +1,11 @@
 import 'package:flutter_todo_app/models/task_model.dart';
 import 'package:hive/hive.dart';
 
-// Hangi depolama sistemi kullanılırsa kullanılsın
-// bu metotları sağlamak zorunda.
+// Hangi depolama sistemi kullanılırsa kullanılsın bu metotları sakalamak zorundayız
+
 abstract class LocalStorage {
   Future<void> addTask({required TaskModel task});
-
+ 
   Future<TaskModel?> getTask({required String id});
 
   Future<List<TaskModel>> getAllTask();
@@ -21,21 +21,15 @@ class HiveLocalStorage extends LocalStorage {
   HiveLocalStorage() {
     _taskBox = Hive.box<TaskModel>('tasks');
   }
-
-  // Görev ekleme
   @override
   Future<void> addTask({required TaskModel task}) async {
     await _taskBox.put(task.id, task);
   }
-
-  // Görev silme
   @override
   Future<bool> deleteTask({required TaskModel task}) async {
     await _taskBox.delete(task.id);
     return true;
   }
-
-  // Bütün görevleri getirme
   @override
   Future<List<TaskModel>> getAllTask() async {
     List<TaskModel> allTasks = _taskBox.values.toList();
@@ -50,7 +44,6 @@ class HiveLocalStorage extends LocalStorage {
     return allTasks;
   }
 
-  // ID'ye göre tek görev getirme
   @override
   Future<TaskModel?> getTask({required String id}) async {
     if (_taskBox.containsKey(id)) {
@@ -60,11 +53,11 @@ class HiveLocalStorage extends LocalStorage {
     return null;
   }
 
-  // Görev güncelleme
   @override
   Future<TaskModel> updateTask({
     required TaskModel task,
   }) async {
+    //hive kaydeettim 
     await task.save();
 
     return task;

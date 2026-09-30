@@ -30,25 +30,20 @@ Future<void> setupHive() async {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-   await initializeDateFormatting('tr_TR', null);
-
+  await initializeDateFormatting('tr_TR', null);
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ),
   );
 
-  // Önce Hive tamamen hazır olsun
   await setupHive();
-
-  // Sonra HiveLocalStorage oluşturulsun
   setup();
-
-  // En son uygulama çalışsın
   runApp(
       EasyLocalization(
       supportedLocales: [Locale('en', 'US'), Locale('tr', 'TR')],
-      path: 'assets/translations', // <-- change the path of the translation files 
+      path: 'assets/languages',  
+      //bir çeviri bulamazsak ing yedek dil olarak kullanılacak
       fallbackLocale: Locale('en', 'US'),
       child: MyApp()
   ));
@@ -60,6 +55,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
