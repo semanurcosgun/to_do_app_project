@@ -4,7 +4,6 @@ import 'package:flutter_todo_app/models/task_model.dart';
 import 'package:flutter_todo_app/constants/constants.dart';
 import 'package:flutter_todo_app/data/local_storage.dart';
 import 'package:flutter_todo_app/main.dart';
-import 'package:intl/intl.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class DetailPage extends StatefulWidget {
@@ -48,7 +47,7 @@ class _DetailPageState extends State<DetailPage> {
       );
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     final task = widget.task;

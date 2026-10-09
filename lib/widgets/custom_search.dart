@@ -29,7 +29,7 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     var filteredList =allTasks.where((task)=>task.name.toLowerCase().contains(query.toLowerCase())).toList();
-    return filteredList.length >0 ?ListView.builder(
+    return filteredList.isNotEmpty?ListView.builder(
         itemBuilder:(context, index){
           var listElement=filteredList[index];
           return Dismissible(

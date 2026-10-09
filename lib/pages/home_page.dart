@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as DatePicker;
+import 'package:flutter/material.dart' as date_picker;
 import 'package:flutter_todo_app/constants/constants.dart';
 import 'package:flutter_todo_app/data/local_storage.dart';
 import 'package:flutter_todo_app/main.dart';
@@ -146,9 +146,9 @@ class _HomePageState extends State<HomePage> {
                 Navigator.of(context).pop();
 
                 if (value.length > 3) {
-                  DatePicker.showTimePicker(
+                  date_picker.showTimePicker(
                     context: context,
-                    initialTime: TimeOfDay.now(),
+                    initialTime: date_picker.TimeOfDay.now(),
                   );
 
                   var newAddTask = TaskModel.create(
