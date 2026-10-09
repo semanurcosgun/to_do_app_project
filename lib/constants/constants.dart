@@ -63,45 +63,71 @@ class Constants {
         })
         .join(' ');
   }
+  // Görev adı (Ders Çalış)
+static TextStyle taskDetailTitleStyle() {
+  return const TextStyle(
+    fontFamily: 'PinyonScript',
+    fontSize: 30,
+    fontWeight: FontWeight.normal,
+    color: darkText,
+  );
+}
 
-  // Görev adı
-  static TextStyle taskDetailTitleStyle() {
-    return const TextStyle(
-      fontSize: 24,
-      fontWeight: FontWeight.bold,
-      color: darkText,
-    );
-  }
+// Görev Bilgileri başlığı
+static TextStyle sectionTitleStyle() {
+  return const TextStyle(
+    fontFamily: 'PinyonScript',
+    fontSize: 28,
+    fontWeight: FontWeight.normal,
+    color: darkText,
+  );
+}
 
-  // Görev Bilgileri başlığı
-  static TextStyle sectionTitleStyle() {
-    return const TextStyle(
-      fontSize: 18,
-      fontWeight: FontWeight.bold,
-      color: darkText,
-    );
-  }
+// Tamamlandı / Yapılacak
+static TextStyle taskStatusStyle(bool isCompleted) {
+  return TextStyle(
+    fontFamily: 'PinyonScript',
+    fontSize: 23,
+    color: isCompleted ? Colors.green : Colors.orange,
+  );
+}
 
-  // Tamamlandı / Yapılacak
-  static TextStyle taskStatusStyle(bool isCompleted) {
-    return TextStyle(
-      fontSize: 14,
-      fontWeight: FontWeight.w500,
-      color: isCompleted ? Colors.green : Colors.orange,
-    );
-  }
+// Oluşturulma Tarihi / Saat
+static TextStyle infoTitleStyle() {
+  return const TextStyle(
+    fontFamily: 'PinyonScript',
+    fontSize: 23,
+    fontWeight: FontWeight.normal,
+    color: darkText,
+  );
+}
 
-  // Oluşturulma Tarihi / Saat
-  static TextStyle infoTitleStyle() {
-    return const TextStyle(fontSize: 12, color: Colors.black54);
-  }
+// Tarih ve saat değerleri
+static TextStyle infoTextStyle() {
+  return const TextStyle(
+    fontFamily: 'PinyonScript',
+    fontSize: 24,
+    fontWeight: FontWeight.normal,
+    color: darkText,
+  );
+}
 
-  // Tarih ve saat değerleri
-  static TextStyle infoTextStyle() {
-    return const TextStyle(
-      fontSize: 15,
-      fontWeight: FontWeight.bold,
-      color: darkText,
-    );
-  }
+// Görevi Tamamla butonu
+static TextStyle detailButtonTextStyle() {
+  return const TextStyle(
+    fontFamily: 'PinyonScript',
+    fontSize: 24,
+    fontWeight: FontWeight.normal,
+    color: Colors.white,
+  );
+}
+static TextStyle taskListStatusStyle(bool isCompleted) {
+  return TextStyle(
+    fontFamily: 'PinyonScript',
+    fontSize: 22,
+    fontWeight: FontWeight.normal,
+    color: isCompleted ? Colors.green : Colors.red,
+  );
+}
+
 }

@@ -10,10 +10,7 @@ import 'package:easy_localization/easy_localization.dart';
 class DetailPage extends StatefulWidget {
   final TaskModel task;
 
-  const DetailPage({
-    super.key,
-    required this.task,
-  });
+  const DetailPage({super.key, required this.task});
 
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -51,7 +48,7 @@ class _DetailPageState extends State<DetailPage> {
       );
     }
   }
-
+  
   @override
   Widget build(BuildContext context) {
     final task = widget.task;
@@ -69,112 +66,112 @@ class _DetailPageState extends State<DetailPage> {
         ),
       ),
 
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // GÖREV BAŞLIĞI
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: Constants.pastelPink,
-                borderRadius: BorderRadius.circular(24),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Icon(
-                    Icons.auto_awesome,
-                    color: Color(0xFFD68EAC),
-                  ),
-
-                  const SizedBox(height: 12),
-
-                  Text(
-                    Constants.capitalizeWords(task.name),
-                    style: Constants.taskDetailTitleStyle(),
-                  ),
-
-                  const SizedBox(height: 12),
-
-                  Text(
-                    task.isCompleted
-                        ? 'completed'.tr()
-                        : 'pending'.tr(),
-                    style: Constants.taskStatusStyle(
-                      task.isCompleted,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // GÖREV BAŞLIĞI
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: Constants.pastelPink,
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Icon(
+                      Icons.auto_awesome,
+                      color: Color(0xFFD68EAC),
                     ),
-                  ),
-                ],
+
+                    const SizedBox(height: 12),
+
+                    Text(
+                      Constants.capitalizeWords(task.name),
+                      style: Constants.taskDetailTitleStyle(),
+                    ),
+
+                    const SizedBox(height: 12),
+
+                    Text(
+                      task.isCompleted
+                          ? 'completed'.tr()
+                          : 'pending'.tr(),
+                      style: Constants.taskStatusStyle(
+                        task.isCompleted,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
 
-            const SizedBox(height: 28),
+              const SizedBox(height: 28),
 
-            // GÖREV BİLGİLERİ
-            Text(
-              'task_information'.tr(),
-              style: Constants.sectionTitleStyle(),
-            ),
+              // GÖREV BİLGİLERİ
+              Text(
+                'task_information'.tr(),
+                style: Constants.sectionTitleStyle(),
+              ),
 
-            const SizedBox(height: 14),
+              const SizedBox(height: 14),
 
-            Row(
-              children: [
-                Expanded(
-                  child: _infoCard(
+              // TARİH VE SAAT KARTLARI
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _infoCard(
                     icon: Icons.calendar_today,
                     title: 'created_date'.tr(),
                     value: DateFormat('dd.MM.yyyy')
                         .format(task.createdAt),
                     color: Constants.pastelPurple,
                   ),
-                ),
 
-                const SizedBox(width: 12),
+                  const SizedBox(height: 12),
 
-                Expanded(
-                  child: _infoCard(
+                  _infoCard(
                     icon: Icons.access_time,
                     title: 'time'.tr(),
                     value: DateFormat('HH:mm')
                         .format(task.createdAt),
                     color: Constants.pastelCream,
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
 
-            const SizedBox(height: 28),
+              const SizedBox(height: 28),
 
-            // TAMAMLAMA BUTONU
-            SizedBox(
-              width: double.infinity,
-              height: 55,
-              child: ElevatedButton.icon(
-                onPressed: _toggleTask,
-                icon: Icon(
-                  task.isCompleted
-                      ? Icons.undo
-                      : Icons.check_circle_outline,
-                ),
-                label: Text(
-                  task.isCompleted
-                      ? 'mark_incomplete'.tr()
-                      : 'complete_task'.tr(),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Constants.primaryPink,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18),
+              // TAMAMLAMA BUTONU
+              SizedBox(
+                width: double.infinity,
+                height: 55,
+                child: ElevatedButton.icon(
+                  onPressed: _toggleTask,
+                  icon: Icon(
+                    task.isCompleted
+                        ? Icons.undo
+                        : Icons.check_circle_outline,
+                  ),
+                  label: Text(
+                    task.isCompleted
+                        ? 'mark_incomplete'.tr()
+                        : 'complete_task'.tr(),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Constants.primaryPink,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -187,13 +184,23 @@ class _DetailPageState extends State<DetailPage> {
     required Color color,
   }) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      width: double.infinity,
+
+      // Sabit height yerine minimum yükseklik
+      constraints: const BoxConstraints(
+        minHeight: 135,
+      ),
+
+      padding: const EdgeInsets.all(20),
+
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(18),
       ),
+
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Icon(
             icon,
@@ -209,9 +216,15 @@ class _DetailPageState extends State<DetailPage> {
 
           const SizedBox(height: 5),
 
-          Text(
-            value,
-            style: Constants.infoTextStyle(),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(
+              value,
+              maxLines: 1,
+              softWrap: false,
+              style: Constants.infoTextStyle(),
+            ),
           ),
         ],
       ),

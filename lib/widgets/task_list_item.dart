@@ -92,10 +92,7 @@ class _TaskItemState extends State<TaskItem> {
         ),
         subtitle: Text(
           widget.task.isCompleted ? 'completed'.tr() : 'pending'.tr(),
-          style: TextStyle(
-            color: widget.task.isCompleted ? Colors.green : Colors.orange,
-            fontSize: 12,
-          ),
+          style: Constants.taskListStatusStyle(widget.task.isCompleted),
         ),
 
         trailing: Text(
