@@ -31,7 +31,7 @@ class CustomSearchDelegate extends SearchDelegate {
     var filteredList =allTasks.where((task)=>task.name.toLowerCase().contains(query.toLowerCase())).toList();
     return filteredList.length >0 ?ListView.builder(
         itemBuilder:(context, index){
-          var ListElement=filteredList[index];
+          var listElement=filteredList[index];
           return Dismissible(
             background:Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -39,13 +39,13 @@ class CustomSearchDelegate extends SearchDelegate {
               Icon(Icons.delete,color: Colors.grey,),
               Text('remove_task').tr()
             ],),
-            key: Key(ListElement.id),
+            key: Key(listElement.id),
             onDismissed: (direction) async{
               allTasks.removeAt(index);
-             await locator<LocalStorage>().deleteTask(task:ListElement);
+             await locator<LocalStorage>().deleteTask(task:listElement);
               
             },
-            child: TaskItem(task: ListElement)
+            child: TaskItem(task: listElement)
           );
         },
         itemCount:filteredList.length,

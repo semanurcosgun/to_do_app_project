@@ -1,7 +1,13 @@
 {
-    "title":"Bugün neler yapacaksim",
-    "empty_task_list":"haydi bir görev ekle",
-    "add_task":"Görev nedir?",
-    "remove_task":"Bu görev silindi",
-     "search_not_found":"Aradiginizi bulamadik"
+  "task_detail": "Görev Detayi",
+  "task_information": "Görev Bilgileri",
+  "created_date": "Oluşturulma Tarihi",
+  "time": "Saat",
+  "completed": "Tamamlandi",
+  "pending": "Yapilacak",
+  "complete_task": "Görevi Tamamla",
+  "mark_incomplete": "Tamamlanmadi Olarak İşaretle",
+  "task_update_error": "Görev güncellenemedi",
+  "task_notes": "Notlarim",
+  "add_note": "Görevinle ilgili not ekle..."
 }
