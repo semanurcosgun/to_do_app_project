@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
             title: TextField(
               style: Constants.getTitleTextStyle(),
               decoration: InputDecoration(
-                hintText: 'add_task'.tr(),
+                hintText: 'Add Task'.tr(),
                 hintStyle: TextStyle(color: Colors.black),
                 border: InputBorder.none,
               ),
